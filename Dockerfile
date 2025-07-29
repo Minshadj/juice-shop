@@ -2,6 +2,8 @@ FROM node:22 AS installer
 COPY . /juice-shop
 WORKDIR /juice-shop
 RUN npm i -g typescript ts-node
+#newline
+ENV NODE_OPTIONS=--max-old-space-size=4096
 RUN npm install --omit=dev --unsafe-perm
 RUN npm dedupe --omit=dev
 RUN rm -rf frontend/node_modules
